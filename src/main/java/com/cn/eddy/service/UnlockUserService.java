@@ -7,5 +7,5 @@ import com.cn.eddy.pojo.UnlockUser;
  */
 public interface UnlockUserService {
 
-    public UnlockUser getUserById(Long userId);
+    UnlockUser getUserById(Long userId);
 }

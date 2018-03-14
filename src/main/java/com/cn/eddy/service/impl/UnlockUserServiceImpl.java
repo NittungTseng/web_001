@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  */
 @Service("unlockUserService")
 public class UnlockUserServiceImpl implements UnlockUserService{
-    @Autowired
+    @Resource
     private UnlockUserMapper unlockUserMapper;
 
     public UnlockUser getUserById(Long userId) {

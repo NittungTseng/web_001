@@ -22,7 +22,7 @@ public class TestMyBatis {
     private static Logger logger = Logger.getLogger(TestMyBatis.class);
 
     @Resource
-    private UnlockUserService unlockUserService = null;
+    private UnlockUserService unlockUserService;
 
     @Test
     public void test1(){

@@ -4,6 +4,7 @@ package com.cn.eddy.controller;
 import com.cn.eddy.pojo.UnlockUser;
 import com.cn.eddy.service.UnlockUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,11 @@ public class UserController {
         UnlockUser unlockUser = this.unlockUserService.getUserById(id);
         model.addAttribute("user",unlockUser);
         return "showUser";
+    }
+
+    @RequestMapping(value = "/hello",method = RequestMethod.GET)
+    public String helloTest(){
+        return "hello";
     }
 }
 

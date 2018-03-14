@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cn.eddy.dao.UnlockUserMapper" >
   <!-- 缓存类配置 -->
-  <cache type="com.cn.eddy.cache.redis.RedisCache"/>
+  <!--<cache type="com.cn.eddy.cache.redis.RedisCache"/>-->
 
   <resultMap id="BaseResultMap" type="com.cn.eddy.pojo.UnlockUser" >
     <id column="JOB_ID" property="jobId" jdbcType="DECIMAL" />
@@ -34,7 +34,7 @@
     REC_VER, IS_DELETE, SUBSTR1, SUBSTR2, SUBSTR3, SUBDATE1, SUBDATE2, SUBDATE3, SUBNUM1, 
     SUBNUM2, SUBNUM3, STARTTIME, CLOSETIME, STARTOPERATOR, CLOSEOPERATOR
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" useCache="true">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" ><!--useCache="true"-->
     select 
     <include refid="Base_Column_List" />
     from EF_UNLOCK_CUSTOMERS_CONFIG
