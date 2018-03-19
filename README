@@ -1,0 +1,65 @@
+This file record some related error mesg and configuration:
+
+----
+No1: Error:java: Compilation failed: internal java compiler error
+----
+-->Settings--Build,Execution,Deployment--Java Compiler--
+Check If it's the same Version between 'Project bytecode version' and 'Target bytecode version';
+Then set them be the same.
+
+----
+No2: log4j WARING
+----
+Error Info like this-->
+log4j:WARN No appenders could be found for logger (org.springframework.web.context.ContextLoader).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+
+----
+setting like this to solve the WARING Info-->
+--1.'log4j.properties' ADD:
+
+log4j.rootLogger= WARN, stdout
+
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d %p [%c] - %m%n
+
+log4j.appender.logfile=org.apache.log4j.FileAppender
+log4j.appender.logfile.File=target/spring.log
+log4j.appender.logfile.layout=org.apache.log4j.PatternLayout
+log4j.appender.logfile.layout.ConversionPattern=%d %p [%c] - %m%n
+
+--2.'web.xml' ADD (in front of ContextLoaderListener):
+<!-- log4j日志配置 -->
+<context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>/WEB-INF/classes/log4j.properties</param-value>
+</context-param>
+<listener>
+    <listener-class>
+        org.springframework.web.util.Log4jConfigListener
+    </listener-class>
+</listener>
+
+--3.'pom.xml' Necessary configuration :
+-->
+<resources>
+  <!-- 解决：maven 编译 -dao 包中的mapper.xml没有编译到targger中 -->
+  <resource>
+    <directory>src/main/java</directory>
+    <includes>
+      <include>**/*.xml</include>
+    </includes>
+    <filtering>true</filtering>
+  </resource>
+  <!-- 解决：maven不编译resources下的配置文件 -->
+  <resource>
+    <directory>src/main/resources</directory>
+    <includes>
+      <include>*.xml</include>
+      <include>*.properties</include>
+    </includes>
+    <filtering>true</filtering>
+  </resource>
+</resources>
