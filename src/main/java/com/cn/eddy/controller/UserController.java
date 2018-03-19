@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -36,5 +37,15 @@ public class UserController {
     public String helloTest(){
         return "hello";
     }
+
+    //restful style
+    @RequestMapping(value = "/restful/{id}",method = RequestMethod.GET)
+    public String restfulTest(@PathVariable("id") String id, Model model){
+        Long idl = Long.parseLong(id);
+        UnlockUser unlockUser = this.unlockUserService.getUserById(idl);
+        model.addAttribute("user",unlockUser);
+        return "showUser";
+    }
+
 }
 

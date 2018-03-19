@@ -1,8 +1,9 @@
 package com.cn.eddy.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UnlockUser {
+public class UnlockUser implements Serializable{
     private Long jobId;
 
     private String custCode;
